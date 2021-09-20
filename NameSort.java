@@ -6,15 +6,17 @@ import java.util.Scanner;
 public class NameSort {
     public static void main(String[] args) throws IOException {
 
-        long startTime = System.currentTimeMillis();
+        long startTime = System.currentTimeMillis(); // run time
 
+        // booleans used to test if sorter should keep sorting
         boolean runAgain = true;
         boolean didSwap = false;
 
+        // booleans used to increase sort speed in doSort method
         boolean doIncrease = true;
         boolean doDecrease = false;
 
-        String fileName = "nameList.txt";
+        String fileName = "nameList.txt"; // file name goes here
 
         File nameList = new File(fileName); // input file
         FileWriter outputFile = new FileWriter("outputFile.txt"); // output file
@@ -29,7 +31,7 @@ public class NameSort {
         Scanner doesInitialLength = new Scanner(nameList); // indexes file
         Scanner doesReadNames = new Scanner(nameList); // reads file data
 
-        int totalLines = 0;
+        int totalLines = 0; // initialize accumulator
 
         // determine total number of names
         while (doesInitialLength.hasNext()) {
@@ -43,30 +45,34 @@ public class NameSort {
             System.exit(0);
         }
 
-        String[] holdsNames = new String[totalLines];
+        String[] holdsNames = new String[totalLines]; // master array
 
-        // assign array names
+        // assign array names - NOT SORTED
         for (int a = 0; a < holdsNames.length; a++) {
             holdsNames[a] = doesReadNames.nextLine();
         }
 
-        int currentIndex = 0;
+        int currentIndex = 0; // initialize index
 
-        int holdsNamesSize = holdsNames.length;
+        int holdsNamesSize = holdsNames.length; // 2nd array size determined by this variable
 
-        long sortTime = System.currentTimeMillis();
-        doSort(runAgain, didSwap, holdsNames, currentIndex, holdsNamesSize, doIncrease, doDecrease); // method that sorts names
-        long sortEndTime = System.currentTimeMillis();
+        long sortTime = System.currentTimeMillis(); // sort time
+
+        //noinspection ConstantConditions
+        doSort(runAgain, didSwap, holdsNames, currentIndex, holdsNamesSize, doIncrease, doDecrease); // sorts names
+
+        long sortEndTime = System.currentTimeMillis(); // sort time
 
         for (String holdsName : holdsNames) {
             //System.out.println(holdsName);
             outputFile.write(holdsName + "\n");
         }
 
+        // close files here
         doesReadNames.close();
         outputFile.close();
 
-        long endTime = System.currentTimeMillis();
+        long endTime = System.currentTimeMillis(); // total time
 
         if (endTime < 1000) {
             System.out.println("Total Time: " + (endTime - startTime) + "s");
