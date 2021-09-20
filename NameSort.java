@@ -14,9 +14,6 @@ public class NameSort {
         boolean doIncrease = true;
         boolean doDecrease = false;
 
-        //Scanner doesInput = new Scanner(System.in);
-
-        //String fileName = doesInput.nextLine();
         String fileName = "nameList.txt";
 
         File nameList = new File(fileName); // input file
@@ -56,11 +53,6 @@ public class NameSort {
         int currentIndex = 0;
 
         int holdsNamesSize = holdsNames.length;
-
-        // test array for crash
-        if (holdsNamesSize - 1 == 0) {
-            System.exit(0);
-        }
 
         long sortTime = System.currentTimeMillis();
         doSort(runAgain, didSwap, holdsNames, currentIndex, holdsNamesSize, doIncrease, doDecrease); // method that sorts names
