@@ -3,8 +3,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class NameSort {
-    public static void main(String[] args) throws IOException {
+public class NameSort
+{
+    public static void main(String[] args) throws IOException
+    {
 
         long startTime = System.currentTimeMillis(); // run time
 
@@ -23,7 +25,7 @@ public class NameSort {
 
         if (!nameList.exists()) // tests if file exists
         {
-            outputFile.write("Error 404. File name \"" + fileName + "\" could not be found.");
+            outputFile.write("Error. File name \"" + fileName + "\" could not be found.");
             outputFile.close();
             System.exit(404);
         }
@@ -34,8 +36,9 @@ public class NameSort {
         int totalLines = 0; // initialize accumulator
 
         // determine total number of names
-        while (doesInitialLength.hasNext()) {
-            doesInitialLength.nextLine();
+        while (doesInitialLength.hasNext())
+        {
+            doesInitialLength.nextLine(); // // //
             totalLines++;
         }
 
@@ -48,8 +51,9 @@ public class NameSort {
         String[] holdsNames = new String[totalLines]; // master array
 
         // assign array names - NOT SORTED
-        for (int a = 0; a < holdsNames.length; a++) {
-            holdsNames[a] = doesReadNames.nextLine();
+        for (int a = 0; a < holdsNames.length; a++)
+        {
+            holdsNames[a] = doesReadNames.nextLine(); // // //
         }
 
         int currentIndex = 0; // initialize index
@@ -63,7 +67,8 @@ public class NameSort {
 
         long sortEndTime = System.currentTimeMillis(); // sort time
 
-        for (String holdsName : holdsNames) {
+        for (String holdsName : holdsNames)
+        {
             //System.out.println(holdsName);
             outputFile.write(holdsName + "\n");
         }
@@ -74,25 +79,26 @@ public class NameSort {
 
         long endTime = System.currentTimeMillis(); // total time
 
-        if (endTime < 1000) {
+        if (endTime < 1000)
+        {
             System.out.println("Total Time: " + (endTime - startTime) + "s");
             System.out.println(" Sort Time: " + (sortEndTime - sortTime) + "s");
         }
-        else {
+        else
+        {
             System.out.println("Total Time: " + ((endTime - startTime)/1000) + "s " + ((endTime - startTime)%1000) + "ms");
             System.out.println(" Sort Time: " + ((sortEndTime - sortTime)/1000) + "s " + ((sortEndTime - sortTime)%1000) + "ms");
         }
 
-
-
-
     }
 
-    private static void doSort(boolean runAgain, boolean didSwap, String[] holdsNames, int currentIndex, int holdsNamesSize, boolean doIncrease, boolean doDecrease) {
+    private static void doSort(boolean runAgain, boolean didSwap, String[] holdsNames, int currentIndex, int holdsNamesSize, boolean doIncrease, boolean doDecrease)
+    {
         do {
             // name sorting algorithm
 
-            if (doTestName(holdsNames[currentIndex], holdsNames[currentIndex + 1])) {
+            if (doTestName(holdsNames[currentIndex], holdsNames[currentIndex + 1]))
+            {
                 doSwap(holdsNames, currentIndex);
                 didSwap = true;
             }
@@ -102,8 +108,10 @@ public class NameSort {
             if (doDecrease)
                 currentIndex--;
 
-            if (currentIndex == (holdsNamesSize - 1)) {
-                if (!didSwap) {
+            if (currentIndex == (holdsNamesSize - 1))
+            {
+                if (!didSwap)
+                {
                     runAgain = false;
                 }
                 //currentIndex = 0;
@@ -112,7 +120,8 @@ public class NameSort {
                 doDecrease = true;
                 doIncrease = false;
             }
-            if (currentIndex == 0) {
+            if (currentIndex == 0)
+            {
                 doDecrease = false;
                 doIncrease = true;
             }
@@ -121,14 +130,16 @@ public class NameSort {
         while (runAgain); // end while
     }
 
-    private static void doSwap(String[] holdsNames, int currentIndex) {
+    private static void doSwap(String[] holdsNames, int currentIndex)
+    {
         String swapper;
         swapper = holdsNames[currentIndex];
         holdsNames[currentIndex] = holdsNames[currentIndex + 1];
         holdsNames[currentIndex + 1] = swapper;
     }
 
-    private static boolean doTestName(String a, String b) {
+    private static boolean doTestName(String a, String b)
+    {
         //System.out.println(a > b); // debug
         int localVar = a.compareToIgnoreCase(b);
         return localVar > 0;
